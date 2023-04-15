@@ -1,4 +1,7 @@
+--Create a Candy Shop database
+
 CREATE TABLE Candy_Shop (id INTEGER PRIMARY KEY, name TEXT, ounces INTEGER, price INTEGER, price_per_ounce INTEGER, aisle INTEGER);
+
 INSERT INTO Candy_Shop VALUES
 (1, "Red Hots", 5.5, 1.24, 0.23, 5),
 (2, "Smarties", 15, 2.68, 0.18, 1),
@@ -16,12 +19,22 @@ INSERT INTO Candy_Shop VALUES
 (14, "Candy Hearts", 7, 3.48, 0.5, 6),
 (15, "Peanut Butter Cups", 10.5, 4.74, 0.45, 6);
 
-SELECT * FROM Candy_Shop;
+--Display the database ordered by price per ounce in an ascending order.
 
 SELECT * FROM Candy_Shop ORDER BY price_per_ounce ASC;
 
+--Which candies can you find in aisle 6 of the Candy Shop?
+
+SELECT * From Candy_Shop WHERE aisle =6;
+
+--Which candies have a price greater than or equal to $0.30 per ounce?
+
 SELECT * FROM Candy_Shop WHERE price_per_ounce <=0.3 ORDER BY price_per_ounce DESC;
 
-SELECT MAX (price) FROM Candy_Shop;
+--What is the maximum price you'll pay for an item at the Candy Shop?
 
-SELECT AVG (price) FROM Candy_Shop;
+SELECT MAX (price) "Max Candy Price" FROM Candy_Shop;
+
+--What is the average price of items in the Candy Shop?
+
+SELECT AVG (price) "Average Candy Price" FROM Candy_Shop;
