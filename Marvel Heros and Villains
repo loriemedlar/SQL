@@ -54,7 +54,7 @@ FROM marvels
 ORDER BY popularity;
 
 
---What is the average height and weight of the male Marvel characters as well as the female characters?
+--What is the average height and weight of the Marvel characters according to gender?
 SELECT gender, AVG(height_m) AS AvgHeight, AVG(weight_kg) AS AvgWeight
 FROM marvels
 GROUP BY gender;
@@ -65,7 +65,7 @@ SELECT name, MAX(height_m) AS Tallest
 From marvels;
 
 
---Order Marvel characters according to their fighting skills
+--Display Marvel characters name, gender, and fighting skills and order according to their fighting skills
 SELECT name, gender, fighting_Skills
 From marvels
 Order by fighting_Skills DESC;
@@ -95,7 +95,7 @@ GROUP BY alignment
 HAVING COUNT(alignment) > 8;
 
 
---Which hometowns have more than one Marvel character from there?
+--Which hometowns are home to more than one Marvel character?
 SELECT hometown, COUNT(*)
 FROM marvels
 GROUP BY hometown
