@@ -20,21 +20,16 @@ INSERT INTO Candy_Shop VALUES
 (15, 'Peanut Butter Cups', 10.5, 4.74, 0.45, 6);
 
 --Display the database ordered by price per ounce in an ascending order.
-
 SELECT * FROM Candy_Shop ORDER BY price_per_ounce ASC;
 
 --Which candies can you find in aisle 6 of the Candy Shop?
-
 SELECT * From Candy_Shop WHERE aisle =6;
 
 --Which candies have a price greater than or equal to $0.30 per ounce?
-
 SELECT * FROM Candy_Shop WHERE price_per_ounce <=0.3 ORDER BY price_per_ounce DESC;
 
 --What is the maximum price you'll pay for an item at the Candy Shop?
-
 SELECT MAX (price) "Max Candy Price" FROM Candy_Shop;
 
 --What is the average price of items in the Candy Shop?
-
 SELECT AVG (price) "Average Candy Price" FROM Candy_Shop;
