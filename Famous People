@@ -1,6 +1,7 @@
---Create table of famous people
-CREATE TABLE MovieStars (id INTEGER PRIMARY KEY AUTOINCREMENT, FirstName TEXT, LastName TEXT, BirthYear INTEGER, BirthPlace TEXT, Married TEXT);
+--In this project, I created three tables containing data about various movie stars, the movies they've acted in, and stars that are married to each other.
 
+--Create table of moviestars
+CREATE TABLE MovieStars (id INTEGER PRIMARY KEY AUTOINCREMENT, FirstName TEXT, LastName TEXT, BirthYear INTEGER, BirthPlace TEXT, Married TEXT);
 INSERT INTO MovieStars VALUES (1,"Chris", "Evans", 1981, "USA", "No");
 INSERT INTO MovieStars VALUES(2,"Ana", "de_Armas", 1988, "Cuba", "No");
 INSERT INTO MovieStars VALUES(3,"Daniel", "Craig", 1968, "UK", "Yes");
@@ -20,7 +21,6 @@ INSERT INTO MovieStars VALUES (16, "Ralph", "Fiennes", 1932, "UK", "No");
 
 
 --Create table of movies
-
 CREATE TABLE Movies (id INTEGER PRIMARY KEY, moviestar_id INTEGER, Title TEXT, YearReleased INTEGER);
 INSERT INTO Movies VALUES (1, 1, "Ghosted", 2023);
 INSERT INTO Movies VALUES (2, 2, "Ghosted", 2023);
@@ -73,16 +73,21 @@ INSERT INTO Movies VALUES (50, 10, "The Green Lantern", 2011);
 INSERT INTO Movies VALUES (51, 10, "The Age of Adeline", 2015);
 
 
-Create table of married moviestars
-
+--Create table of married moviestars
 CREATE TABLE married_couples (id INTEGER Primary Key, moviestar1_id INTEGER, moviestar2_id INTEGER);
 INSERT INTO married_couples VALUES (1, 3, 15);
 INSERT INTO married_couples VALUES (2, 14, 10);
 
-SELECT * FROM married_couples;
+
+--Join the tables MovieStars and Movies together to match the actors with the movies they've starred in.
+SELECT ms.FirstName, ms.LastName, m.Title
+FROM MovieStars ms
+    Join Movies m
+    On ms.id = m.moviestar_id
+ORDER BY ms.FirstName, ms.LastName;
 
 
-
+--Which actors co-starred in various movies together?
 SELECT ms.FirstName, ms.LastName, m.Title
 FROM MovieStars ms
     LEFT OUTER JOIN Movies m
@@ -91,20 +96,14 @@ WHERE m.Title IN ("Knives Out", "Glass Onion", "Spectre", "Ghosted", "No Time To
 ORDER by m.Title;
 
 
-SELECT ms.FirstName, ms.LastName, m.Title
-FROM MovieStars ms
-    Join Movies m
-    On ms.id = m.moviestar_id
-ORDER BY ms.FirstName, ms.LastName;
-
-
+--Which movies did Chris Evans star in?
 SELECT ms.FirstName, ms.LastName, m.Title
 FROM MovieStars ms
     Join Movies m
     On ms.id = m.moviestar_id
 WHERE ms.LastName = "Evans";
 
-
+--Which movie stars are married to each other?
 SELECT a.FirstName, a.LastName, b.FirstName, b.LastName
 FROM  married_couples mc
     Join MovieStars a
