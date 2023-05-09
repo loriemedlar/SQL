@@ -36,10 +36,10 @@ Group by Product;
 
 --Which products were sold in February at 548 Lincoln St, Seattle, WA 98101,
 -- how many of each were sold, and what was the total revenue?
-SELECT SUM(Quantity), Product, SUM(Quantity) * price AS Revenue, location
+SELECT SUM(Quantity), Product, SUM(Quantity) * price AS Revenue
 FROM BIT_DB.FebSales 
 WHERE location = '548 Lincoln St, Seattle, WA 98101'
-GROUP BY Product, location;
+GROUP BY Product;
 
 --How many customers ordered more than two products at a time in February, and what was the average amount spent for those customers? 
 SELECT COUNT(DISTINCT c.acctnum), AVG(Quantity*price)
