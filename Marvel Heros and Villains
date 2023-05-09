@@ -63,13 +63,13 @@ GROUP BY gender;
 
 --Who is the tallest Marvel character?
 SELECT name, MAX(height_m) AS Tallest
-From marvels;
+FROM marvels;
 
 
 --Display Marvel characters name, gender, and fighting skills and order according to their fighting skills
 SELECT name, gender, fighting_Skills
-From marvels
-Order by fighting_Skills DESC;
+FROM marvels
+ORDER BY fighting_Skills DESC;
 
 
 --Categorize characters' fighting skills as Warrior, Mediocre, or Wimp
