@@ -68,3 +68,10 @@ FROM BIT_DB.Spotifydata);
 Select artist_name, AVG(popularity)
 FROM BIT_DB.Spotifydata
 WHERE artist_name = 'Doja Cat';
+
+--Label every artist with an average popularity of 90 or above as a "Top Star"
+SELECT artist_name, AVG(popularity) AS AvgPopularity, 'Top Star' as tag
+FROM Spotifydata
+GROUP BY artist_name
+HAVING AvgPopularity >= 90;"
+
