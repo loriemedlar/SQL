@@ -51,11 +51,10 @@ Order by valence DESC
 LIMIT 5;
 
 --Which artists have three or more songs in Spotify's Top 50 Songs in 2021?
-SELECT artist_name, COUNT(*)
+SELECT artist_name, COUNT(track_name)
 FROM BIT_DB.Spotifydata
 GROUP BY artist_name
-ORDER BY COUNT(*) DESC
-LIMIT 5;
+HAVING COUNT(track_name) >= 3;
 
 --Which song is the most acoustic?
 SELECT artist_name, track_name, acousticness
