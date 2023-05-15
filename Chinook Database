@@ -13,7 +13,7 @@ SELECT cust.FirstName, cust.LastName, inv.InvoiceId, inv.InvoiceDate, inv.Billin
 FROM chinook.invoices inv
 LEFT JOIN chinook.customers cust
 ON inv.CustomerId = cust.CustomerId
-WHERE inv.BillingCountry = 'Brazil'
+WHERE inv.BillingCountry = 'Brazil';
 
 --4. Show the Employees who are Sales Agents
 SELECT EmployeeId, FirstName, LastName, Title
@@ -30,7 +30,7 @@ FROM chinook.invoices inv
 JOIN chinook.customers cust
 ON inv.customerId = cust.CustomerId
 JOIN chinook.employees emp
-ON emp.EmployeeId = cust.SupportRepId
+ON emp.EmployeeId = cust.SupportRepId;
 
 --7. Show the Invoice Total, Customer name, Country, and Sales Agent name for all invoices and customers
 SELECT inv.Total AS InvoiceTotal, cust.FirstName || ' ' || cust.LastName AS CustomerName, cust.Country, emp.FirstName || ' ' || emp.LastName AS SalesAgentName
@@ -39,7 +39,7 @@ JOIN chinook.invoices inv ON invit.InvoiceId = inv.InvoiceId
 JOIN chinook.customers cust
 ON inv.customerId = cust.CustomerId
 JOIN chinook.employees emp
-ON emp.EmployeeId = cust.SupportRepId
+ON emp.EmployeeId = cust.SupportRepId;
 
 --8. How many Invoices were there in 2009?
 SELECT COUNT(*)
@@ -55,7 +55,7 @@ WHERE InvoiceDate BETWEEN '2009-01-01' AND '2009-12-31';
 SELECT tracks.name, invit.InvoiceLineId
 FROM chinook.invoice_items invit
 JOIN chinook.tracks 
-ON invit.TrackId = tracks.TrackId
+ON invit.TrackId = tracks.TrackId;
 
 --11. -Write a query that includes the purchased track name AND artist name with each invoice line ID.
 SELECT art.Name AS ArtistName, tracks.name AS TrackName, invit.InvoiceLineId
@@ -75,7 +75,7 @@ ON t.AlbumId = al.AlbumId
 JOIN chinook.media_types mt
 ON t.MediaTypeId = mt.MediaTypeId
 JOIN chinook.genres g
-ON t.GenreId = g.GenreId
+ON t.GenreId = g.GenreId;
 
 --13. Show the total sales made by each sales agent.
 SELECT emp.FirstName || ' ' || emp.LastName AS SalesAgentName, ROUND(SUM(inv.Total),2) AS TotalSales
