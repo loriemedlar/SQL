@@ -25,7 +25,7 @@ SELECT DISTINCT BillingCountry
 FROM chinook.invoices;
 
 --6. Provide a query that shows the invoices associated with each sales agent. The resulting table should include the Sales Agent's full name.
-SELECT emp.FirstName, emp.LastName, inv.InvoiceId, inv.InvoiceDate, inv.BillingCountry
+SELECT emp.FirstName || ' ' || emp.LastName AS SalesAgentName, inv.InvoiceId, inv.InvoiceDate, inv.BillingCountry
 FROM chinook.invoices inv
 JOIN chinook.customers cust
 ON inv.customerId = cust.CustomerId
