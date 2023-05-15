@@ -114,16 +114,25 @@ ON t.GenreId = g.GenreId
 WHERE g.name LIKE 'Alternative%'
 ORDER BY g.name;
 
-17. List the revenue brought in by each genre
+--17. List the revenue brought in by each genre
 SELECT g.name AS Genre, ROUND(SUM(invit.UnitPrice *invit. Quantity), 2) AS Revenue_By_Genre
 FROM tracks t
-LEFt JOIN invoice_items invit
+LEFT JOIN invoice_items invit
 ON t.TrackId = invit.TrackId
 JOIN genres g
 ON g.GenreId = t.GenreId
 GROUP BY g.name
-ORDER BY Revenue_By_Genre DESC
+ORDER BY Revenue_By_Genre DESC;
 
+--18. Which genre had no revenue reported?
+SELECT g.name AS Genre, ROUND(SUM(invit.UnitPrice *invit. Quantity), 2) AS Revenue_By_Genre
+FROM tracks t
+LEFT JOIN invoice_items invit
+ON t.TrackId = invit.TrackId
+JOIN genres g
+ON g.GenreId = t.GenreId
+GROUP BY g.name
+HAVING ROUND(SUM(invit.UnitPrice *invit. Quantity), 2) IS NULL;
 
 
 
