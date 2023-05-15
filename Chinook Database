@@ -13,15 +13,12 @@ SELECT cust.FirstName, cust.LastName, inv.InvoiceId, inv.InvoiceDate, inv.Billin
 FROM chinook.invoices inv
 LEFT JOIN chinook.customers cust
 ON inv.CustomerId = cust.CustomerId
-WHERE inv.BillingCountry = 'Bra--Show the Employees who are Sales Agents
-SELECT FirstName, LastName, Title
-FROM chinook.employees
-WHERE Title LIKE "Sales%Agent";
+WHERE inv.BillingCountry = 'Brazil'
 
 --4. Show the Employees who are Sales Agents
 SELECT EmployeeId, FirstName, LastName, Title
 FROM chinook.employees
-WHERE Title LIKE "Sales%Agent";
+WHERE Title LIKE 'Sales%Agent';
 
 --5. Find a unique/distinct list of billing countries from the Invoice table.
 SELECT DISTINCT BillingCountry
@@ -79,6 +76,16 @@ JOIN chinook.media_types mt
 ON t.MediaTypeId = mt.MediaTypeId
 JOIN chinook.genres g
 ON t.GenreId = g.GenreId
+
+--13. Show the total sales made by each sales agent.
+SELECT emp.FirstName || ' ' || emp.LastName AS SalesAgentName, ROUND(SUM(inv.Total),2) AS TotalSales
+FROM chinook.employees emp
+JOIN chinook.Customers cust
+    ON emp.EmployeeId = cust.SupportRepId
+JOIN chinook.Invoices inv
+    ON inv.customerID = cust.customerID
+WHERE emp.Title = 'Sales Support Agent' 
+GROUP BY emp.FirstName || ' ' || emp.LastName;
 
 
 
