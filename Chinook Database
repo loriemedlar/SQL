@@ -99,6 +99,31 @@ AND inv.InvoiceDate LIKE '2009%'
 GROUP BY emp.FirstName || ' ' || emp.LastName
 ORDER BY TotalSales DESC;
 
+--15. List track names according to genre
+SELECT t.name, g.name AS Genre
+FROM chinook.tracks t
+LEFT JOIN chinook.genres g
+ON t.GenreId = g.GenreId
+ORDER BY g.name;
+
+--16. List all Alternative and/or punk tracks
+SELECT t.name, g.name AS Genre
+FROM chinook.tracks t
+LEFT JOIN chinook.genres g
+ON t.GenreId = g.GenreId
+WHERE g.name LIKE 'Alternative%'
+ORDER BY g.name;
+
+17. List the revenue brought in by each genre
+SELECT g.name, ROUND(SUM(invit.UnitPrice *invit. Quantity), 2) AS RevenueByGenre
+FROM tracks t
+LEFt JOIN invoice_items invit
+ON t.TrackId = invit.TrackId
+JOIN genres g
+ON g.GenreId = t.GenreId
+GROUP BY g.name
+ORDER BY RevenueByGenre DESC
+
 
 
 
