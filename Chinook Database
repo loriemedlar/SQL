@@ -147,4 +147,11 @@ GROUP BY art.Name
 ORDER BY Revenue DESC
 LIMIT 1;
 
-
+--20. Which is the most popular media type that tracks were purchased in?
+SELECT mt.Name AS MediaType, COUNT(mt.name) AS PurchasedFiles
+FROM chinook.media_types mt
+JOIN chinook.tracks t
+    ON mt.MediaTypeId = t.MediaTypeId
+GROUP BY mt.name
+ORDER BY PurchasedFiles DESC
+LIMIT 1;
