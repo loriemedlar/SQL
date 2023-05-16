@@ -134,6 +134,17 @@ ON g.GenreId = t.GenreId
 GROUP BY g.name
 HAVING ROUND(SUM(invit.UnitPrice *invit. Quantity), 2) IS NULL;
 
-
+--19. Which artist brought in the most revenue?
+SELECT art.Name, ROUND(SUM(invit.UnitPrice * invit.Quantity),2) AS Revenue 
+FROM chinook.invoice_items invit
+JOIN chinook.tracks t
+    ON invit.TrackId = t.TrackId
+JOIN chinook. albums alb
+    ON alb.AlbumId = t.AlbumId
+JOIN artists art
+    ON art.ArtistId = alb.ArtistId
+GROUP BY art.Name
+ORDER BY Revenue DESC
+LIMIT 1;
 
 
